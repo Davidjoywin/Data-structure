@@ -2,6 +2,7 @@
 linked list implementtion from
 insertion
 deletion
+traversing
 count and so on
 """
 
@@ -12,14 +13,26 @@ class LinkedList:
 
     def insertionAtEnd(self, new_data):
         new_node = Node(new_data)
-        if self.head == None:
+        if self.head is None:
             self.head = new_node
-            self.count += 2
+            self.count += 1
             return
 
-        while self.head.next != None:
+        last = self.head
+        while (last.next):
+            last = last.next
+        last.next = new_node
+        self.count += 1
+
+    def printAll(self):
+        while self.head is not None:
+            print(self.head.data, "->", end=" ")
             self.head = self.head.next
-        self.head.next = new_node
+        print()
+
+    def getLength(self):
+        return self.count
+
 
 class Node:
     def __init__(self, data):
@@ -29,4 +42,13 @@ class Node:
     
 llist = LinkedList()
 
-print(llist.insertionAtEnd(3))
+llist.insertionAtEnd(5)
+llist.insertionAtEnd(7)
+llist.insertionAtEnd(8)
+llist.insertionAtEnd(9)
+
+llist.printAll()
+
+print(llist.getLength())
+
+
